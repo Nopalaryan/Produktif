@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Menghitung Indeks Prestasi</title>
+	<style>
+		table {
+			border-collapse: collapse;
+		}
+		th, td {
+			border: 1px solid #ddd;
+			padding: 8px;
+			text-align: left;
+		}
+	</style>
+
+</head>
+<body class="w-full flex flex-col justify-center items-center font-mono">
+	<h1 class="my-5 mt-20 text-2xl">Menghitung Indeks Prestasi</h1>
+	<h1 id="notify" class="my-5 px-2 text-sm text-gray-800 bg-red-300 rounded-md hidden"></h1>
+	<h1 id="credit" class="my-2 px-2 text-sm text-gray-800 bg-green-300 rounded-md hidden"></h1>
+	<table onsubmit="return">
+		<tr>
+			<th>Komponen</th>
+			<th>Bobot</th>
+			<th>Nilai</th>
+		</tr>
+		<tr>
+			<td>Quis</td>
+			<td>10%</td>
+			<td><input class="w-full px-2 rounded-md" min="0" max="100" type="number" name="quis" id="quis" placeholder="masukkan nilai" value="100"></td>
+		</tr>
+		<tr>
+			<td>Tugas</td>
+			<td>20%</td>
+			<td><input class="w-full px-2 rounded-md" min="0" max="100" type="number" name="tugas" id="tugas" placeholder="masukkan nilai" value="100"></td>
+		</tr>
+		<tr>
+			<td>UTS</td>
+			<td>30%</td>
+			<td><input class="w-full px-2 rounded-md" min="0" max="100" type="number" name="uts" id="uts" placeholder="masukkan nilai" value="100"></td>
+		</tr>
+		<tr>
+			<td>UAS</td>
+			<td>40%</td>
+			<td><input class="w-full px-2 rounded-md" min="0" max="100" type="number" name="uas" id="uas" placeholder="masukkan nilai" value="100"></td>
+		</tr>
+		<tr>
+			<td colspan="2">Indeks Prestasi</td>
+			<td id="indeks-presentasi">A</td>
+		</tr>
+		<tr>
+			<td colspan="2">Keterangan</td>
+			<td id="keterangan">Lulus dengan Sangat Baik</td>
+		</tr>
+		<tr>
+			<td colspan="2">Nilai Akhir</td>
+			<td id="nilai-akhir">100</td>
+		</tr>
+        <tr>
+            <td colspan="2"><button onclick="reset()" class="w-full transition border-none outline-none hover:bg-gray-500 hover:text-white rounded-md">Reset</button></td>
+            <td><button type="submit" onclick="calculate()" class="w-full transition border-none outline-none hover:bg-gray-500 hover:text-white rounded-md">Update</button></td>
+        </tr>
+	</table>
