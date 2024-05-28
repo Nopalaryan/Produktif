@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembelian Tiket</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .total {
+            font-weight: bold;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pembelian Tiket</h1>
+        <div class="form-group">
+            <label for="destination">Pilih Tujuan:</label>
+            <select id="destination" onchange="calculateTotal()">
+                <option value="300000">Jakarta (Rp 300,000)</option>
+                <option value="100000">Surabaya (Rp 100,000)</option>
+                <option value="150000">Pemalang (Rp 150,000)</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="quantity">Jumlah Tiket:</label>
+            <input type="number" id="quantity" value="1" min="1" onblur="showNotification()" oninput="validateInput(this)">
+        </div>
+        <div class="result" id="result">
+            Hasil Pembelian: 
+        </div>
+        <div class="total">
+            Total Harga: Rp <span id="total">0</span>
+        </div>
+    </div>
+
+    <script>
+        function calculateTotal() {
+            const destination = document.getElementById('destination');
+            const quantity = document.getElementById('quantity');
+            const total = document.getElementById('total');
+
+            const price = parseInt(destination.value);
+            const numTickets = parseInt(quantity.value);
+
+            const totalPrice = price * numTickets;
+            total.textContent = totalPrice.toLocaleString('id-ID');
+        }
+
+        function validateInput(input) {
+            if (input.value < 1) {
+                input.value = 1;
+            }
+            calculateTotal();
+        }
+
+        function showNotification() {
+            const destination = document.getElementById('destination');
+            const quantity = document.getElementById('quantity');
+            const result = document.getElementById('result');
+
+            const price = parseInt(destination.value);
+            const numTickets = parseInt(quantity.value);
+
+            const selectedText = destination.options[destination.selectedIndex].text;
+            result.innerHTML = `Hasil Pembelian: ${selectedText} (Rp ${price.toLocaleString('id-ID')}) (Rp ${price.toLocaleString('id-ID')} x ${numTickets} tiket)`;
+            result.style.display = 'block';
+        }
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            calculateTotal();
+        });
+    </script>
+</body>
+</html>
